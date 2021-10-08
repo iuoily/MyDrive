@@ -17,7 +17,7 @@ public class FileList extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String path = "E:/FileTest/";
+        String path = "E:/FileCenter/";
         HttpSession session = req.getSession();
         String username = (String)session.getAttribute("user");
         File f = new File(path + username);

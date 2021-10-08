@@ -16,6 +16,12 @@ public class Files {
         this.uploader = uploader;
     }
 
+    public Files(String fname, String fsize, String uploader) {
+        this.fname = fname;
+        this.fsize = fsize;
+        this.uploader = uploader;
+    }
+
     @Override
     public String toString() {
         return "Files{" +

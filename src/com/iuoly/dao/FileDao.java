@@ -4,6 +4,7 @@ import com.iuoly.entity.Files;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import java.io.File;
 import java.util.List;
 
 public interface FileDao {

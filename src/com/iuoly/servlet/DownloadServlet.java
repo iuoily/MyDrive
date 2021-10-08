@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/download")
 public class DownloadServlet extends HttpServlet{
 	
-	String path = "E:\\FileTest\\";
+	String path = "E:\\FileCenter\\";
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

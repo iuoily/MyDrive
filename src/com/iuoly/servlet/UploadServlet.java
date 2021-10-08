@@ -1,5 +1,10 @@
 package com.iuoly.servlet;
 
+import com.iuoly.dao.FileDao;
+import com.iuoly.entity.Files;
+import com.iuoly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +23,7 @@ import javax.servlet.http.*;
 @WebServlet("/upload")
 public class UploadServlet extends HttpServlet{
 	
-	String path = "E:/FileTest/";
+	String path = "E:/FileCenter/";
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -26,6 +31,7 @@ public class UploadServlet extends HttpServlet{
 		String username = (String) req.getSession().getAttribute("user");
 		InputStream inputStream = null;
 		FileOutputStream os =null;
+		String fname = null;
 
 
 		File file = new File(path + username);
@@ -33,10 +39,11 @@ public class UploadServlet extends HttpServlet{
 			file.mkdir();
 		}
 
+
 		try {
 		Collection<Part> parts = req.getParts();
 		for (Part part : parts) {
-			String fname = part.getSubmittedFileName();
+			fname = part.getSubmittedFileName();
 /*			String fsize;
 			long  fs = part.getSize()/1024;
 			System.out.println(fs);
@@ -59,6 +66,15 @@ public class UploadServlet extends HttpServlet{
 				os.write(data, 0, length);
 			}
 		}
+
+			SqlSession session = MybatisUtils.getSession();
+			FileDao fileDao = session.getMapper(FileDao.class);
+			Files myfile = new Files(fname,file.length()+"",username);
+			int flag = fileDao.save(myfile);
+			if(flag == 1) {
+				System.out.println("上传成功！");
+			}
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
