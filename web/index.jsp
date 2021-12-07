@@ -114,6 +114,7 @@
 							out.println("<td>" + sdf.format(new Date(file.lastModified())) + "</td>");
 							out.println("<td>" + ((len = (int) file.length()) < 1024 ? len + "b" : (len/1024 < 1024 ? len/1024 + "KB" : len/1024/1024 + "MB")) + "</td>");
 							out.println("<td><a href='download?fname=" + file.getName() + "'><img src=\"static/image/download_icon.png\"></a>");
+
 							out.println("&nbsp;<a href='delete?fname=" + file.getName() + "'><img src=\"static/image/delete_icon.png\"></a></td>");
 							out.println("</tr>");
 						}

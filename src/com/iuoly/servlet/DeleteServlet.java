@@ -22,6 +22,7 @@ public class DeleteServlet extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String fname = req.getParameter("fname");
+        System.out.println(fname);
         String user = (String) session.getAttribute("user");
 
         Integer msg = null;
@@ -30,22 +31,30 @@ public class DeleteServlet extends HttpServlet{
 //        }
 
         try {
-
-        File dfile = new File(path + user + "\\" + fname);
-        boolean isOK = dfile.exists();
-        if (isOK) {
-            dfile.delete();
-            msg = 1;
-            System.out.println("删除成功");
-        } else {
-            msg = 0;
-            System.out.println("文件不存在");
-        }
+            File dfile = new File(path + user + "\\" + fname);
+            if (forceDelete(dfile)) {
+                msg = 1;
+                System.out.println("删除成功");
+            } else {
+                msg = 0;
+                System.out.println("删除失败");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             msg = -1;
         }
         session.setAttribute("DelStatus",msg);
         res.sendRedirect("FileList");
+    }
+
+    public static boolean forceDelete(File f) {
+        boolean result = false;
+        int tryCount = 0;
+        while (!result && tryCount++ < 10) {
+            System.gc();
+            System.out.println(f);
+            result = f.delete();
+        }
+        return result;
     }
 }

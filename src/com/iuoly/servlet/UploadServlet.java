@@ -43,7 +43,8 @@ public class UploadServlet extends HttpServlet{
 		try {
 		Collection<Part> parts = req.getParts();
 		for (Part part : parts) {
-			fname = part.getSubmittedFileName();
+			fname = part.getSubmittedFileName().replace("+"," ");
+			System.out.println(fname);
 /*			String fsize;
 			long  fs = part.getSize()/1024;
 			System.out.println(fs);
@@ -79,6 +80,7 @@ public class UploadServlet extends HttpServlet{
 			e.printStackTrace();
 		} finally {
 			if (os!=null) {
+				os.flush();
 				os.close();
 			}
 			if (os!=null) {
