@@ -80,23 +80,16 @@
 			</form>
 	<hr style="height:5px;border:none;border-top:5px groove #145d30;">
 			<table align="center" id="table-files">
-				<caption style="font-size: xx-large"><%=user%>用户的文件列表(<%=(files.length)%>)</caption>
-				<%
-					if ("1" == session.getAttribute("DelStatus")) {
-						out.println(("删除成功！"));
-						session.removeAttribute("msg");
-					}
-					else if ("0" == session.getAttribute("DelStatus")) {
-						out.println(("文件不存在！"));
-						session.removeAttribute("msg");
-					} else if ("-1" == session.getAttribute("DelStatus")) {
-						out.println(("删除失败！"));
-						session.removeAttribute("msg");
-					} else if (null == session.getAttribute("DelStatus")) {
-						out.println("111");
-					}
-
-				%>
+				<caption style="font-size: xx-large"><%=user%>用户的文件列表(
+					<%
+						try {
+							out.println(files.length);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					%>
+					)
+				</caption>
 				<tbody align="center">
 				<tr style="font-size: x-large;">
 					<th width="40%">文件名称</th>
