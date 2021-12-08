@@ -76,6 +76,7 @@
 				<input type="file" name="file" class="input-upload" multiple="50"><br>
 	<hr style="height:5px;border:none;border-top:5px groove #165b5d;">
 				<input type="submit" value="开始上传" class="input-submint">
+<%--				<button type="submit" value="上传" class="button-submit"><img src="static/image/upload_icon.png" alt="点击提交"></button>--%>
 			</form>
 	<hr style="height:5px;border:none;border-top:5px groove #145d30;">
 			<table align="center" id="table-files">
