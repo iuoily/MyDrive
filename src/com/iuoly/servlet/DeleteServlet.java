@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet{
 
-    String path = "E:\\FileCenter\\";
+    private String path = "E:\\FileCenter\\";
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class DeleteServlet extends HttpServlet{
         System.out.println(fname);
         String user = (String) session.getAttribute("user");
 
-        Integer msg = null;
+        String msg = null;
 //        if ("test" == user) {
 //            msg = "权限不足";
 //        }
@@ -33,21 +33,24 @@ public class DeleteServlet extends HttpServlet{
         try {
             File dfile = new File(path + user + "\\" + fname);
             if (forceDelete(dfile)) {
-                msg = 1;
+                req.setAttribute("DelSatuts","删除成功！");
+                msg = "删除成功！";
                 System.out.println("删除成功");
             } else {
-                msg = 0;
+                msg = "删除失败！";
                 System.out.println("删除失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            msg = -1;
+            msg = "操作异常！";
         }
-        session.setAttribute("DelStatus",msg);
+//        req.setAttribute("DelStatus",msg);
+
         res.sendRedirect("FileList");
+//        req.getRequestDispatcher("FileList").forward(req,res);
     }
 
-    public static boolean forceDelete(File f) {
+    private static boolean forceDelete(File f) {
         boolean result = false;
         int tryCount = 0;
         while (!result && tryCount++ < 10) {

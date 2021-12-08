@@ -28,6 +28,6 @@ public class FileList extends HttpServlet {
 
         //转发到首页
         resp.sendRedirect("index.jsp");
-        System.out.println("getfilelist...");
+//        System.out.println("getfilelist...");
     }
 }

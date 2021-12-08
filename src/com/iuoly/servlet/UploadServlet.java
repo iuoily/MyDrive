@@ -22,29 +22,29 @@ import javax.servlet.http.*;
 @MultipartConfig
 @WebServlet("/upload")
 public class UploadServlet extends HttpServlet{
-	
-	String path = "E:/FileCenter/";
 
-	@Override
+    @Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		String username = (String) req.getSession().getAttribute("user");
 		InputStream inputStream = null;
 		FileOutputStream os =null;
 		String fname = null;
+		String fType = null;
 
-
-		File file = new File(path + username);
+        String path = "E:/FileCenter/";
+        File file = new File(path + username);
 		if (!file.exists()) {
 			file.mkdir();
 		}
-
 
 		try {
 		Collection<Part> parts = req.getParts();
 		for (Part part : parts) {
 			fname = part.getSubmittedFileName().replace("+"," ");
 			System.out.println(fname);
+            String contentType = part.getContentType();
+            System.out.println(contentType);
 /*			String fsize;
 			long  fs = part.getSize()/1024;
 			System.out.println(fs);
@@ -56,7 +56,6 @@ public class UploadServlet extends HttpServlet{
 
 			System.out.println(fname + ":" + fsize);*/
 			//把文件保存起来
-			
 			inputStream = part.getInputStream();
 			os = new FileOutputStream(file.getAbsolutePath()+ "/" + fname);
 			
