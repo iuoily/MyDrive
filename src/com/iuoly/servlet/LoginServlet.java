@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet{
         HttpSession session1 = req.getSession();
         session1.setAttribute("user",username);
 		// 转发给FileList加载数据
+//		req.getRequestDispatcher("FileList").forward(req,res);
 		res.sendRedirect("FileList");
 
 	}

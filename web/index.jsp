@@ -35,8 +35,18 @@
 			</form>
 	<hr style="height:5px;border:none;border-top:5px groove #145d30;">
 			<table align="center" id="table-files">
-				<caption style="font-size: xx-large"><%=user%>用户的文件列表(<%=(files.length)%>)</caption>
-				${DelSatuts}
+
+				<caption style="font-size: xx-large"><%=user%>用户的文件列表(
+					<%
+						try {
+							out.println(files.length);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					%>
+					)
+				</caption>
+
 				<tbody align="center">
 				<tr style="font-size: x-large;">
 					<th width="40%">文件名称</th>

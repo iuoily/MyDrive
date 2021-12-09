@@ -1,8 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="file">
-    <output-path>$PROJECT_DIR$/out/artifacts/file</output-path>
+  <artifact type="exploded-war" name="MyDrive:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyDrive_war_exploded</output-path>
     <root id="root">
-      <element id="library" level="project" name="lib" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="MyDrive" />

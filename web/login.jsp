@@ -12,14 +12,20 @@
 			font-size: 80px;
 			background-color: ghostwhite;
 		}
+		.login-input-div {
+			position: fixed;
+			top: 40%;
+			left: auto;
+		}
 	</style>
-
 </head>
 <body>
-<div align="center" style="background-color: #dff3ff">
+<div align="center" class="login-input-div">
 	<form action="login" method="post" style="font-size: 50px">
-		账号：<input name="username" placeholder="Address"><br/>
-		密码：<input name="password" placeholder="Password"><br/>
+
+		<input name="username" placeholder="用户名"><br>
+		<input name="password" placeholder="密码"><br>
+
 		${msg}<br>
 			<input type="submit" value="游客|登录"><br/>
 		<a href="register.jsp">没有账号，去注册</a>

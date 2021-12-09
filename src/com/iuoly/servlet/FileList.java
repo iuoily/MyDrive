@@ -17,6 +17,8 @@ public class FileList extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        try {
+
         String path = "E:/FileCenter/";
         HttpSession session = req.getSession();
         String username = (String)session.getAttribute("user");
@@ -28,6 +30,11 @@ public class FileList extends HttpServlet {
 
         //转发到首页
         resp.sendRedirect("index.jsp");
-//        System.out.println("getfilelist...");
+
+        System.out.println("getfilelist...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
